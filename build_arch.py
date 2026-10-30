@@ -6,10 +6,7 @@ import torch.nn.functional as F
 
 
 class CompactSSMLiteBlock(nn.Module):
-    """
-    【轻量高效版】精简多方向特征交互块
-    剔除大卷积带来的过拟合风险，采用轻量级核（3x3 与 5x5）精准锁定细胞核边缘。
-    """
+
     def __init__(self, channels: int):
         super().__init__()
         self.channel_proj = nn.Conv2d(channels, channels * 2, 1, bias=False)
@@ -52,7 +49,7 @@ class CompactSSMLiteBlock(nn.Module):
 
 class SOTAPathologyDetectorLite(nn.Module):
     """
-    轻量高效版病理细胞核检测头（兼顾泛化性与精度）
+    轻量高效版病理细胞核检测头
     """
     def __init__(self, in_channels_list, feat_channels=96, num_classes=2, space=8):
         super().__init__()
